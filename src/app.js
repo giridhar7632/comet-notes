@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 
 // Routes
 
+const mainRouter = require('./routes/index.js')
 const { MONGO_URI } = require('./utils/config.js')
 const logger = require('./utils/logger')
 const { requestLogger } = require('./utils/middleware.js')
@@ -26,6 +27,8 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(requestLogger)
 // app.use(cors())
+
+app.use('/', mainRouter)
 
 // connecting to mongodb atlas
 connect(MONGO_URI, {
