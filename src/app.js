@@ -4,7 +4,7 @@ const { connect } = require('mongoose')
 const cookieParser = require('cookie-parser')
 
 // Routes
-
+const authRouter = require('./routes/auth.js')
 const mainRouter = require('./routes/index.js')
 const { MONGO_URI } = require('./utils/config.js')
 const logger = require('./utils/logger')
@@ -29,6 +29,7 @@ app.use(requestLogger)
 // app.use(cors())
 
 app.use('/', mainRouter)
+app.use('/auth', authRouter)
 
 // connecting to mongodb atlas
 connect(MONGO_URI, {
