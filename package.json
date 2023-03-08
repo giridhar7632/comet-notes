@@ -1,7 +1,7 @@
 {
 	"name": "comet-notes",
 	"version": "1.0.0",
-	"description": "",
+	"description": "an app to take quick and fast notes ",
 	"main": "index.js",
 	"scripts": {
 		"start": "node index.js",
