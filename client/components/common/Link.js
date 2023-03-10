@@ -1,12 +1,18 @@
-import { Link as ChakraLink } from '@chakra-ui/next-js'
+import NextLink from 'next/link'
+import { Text, useColorModeValue } from '@chakra-ui/react'
 
-export default function Link() {
+const Link = ({ href, children, ...props }) => {
+	const color = useColorModeValue('purple.500', 'purple.300')
 	return (
-		<ChakraLink
-			href='/about'
-			color='purple.400'
-			_hover={{ color: 'purple.500' }}>
-			{text}
-		</ChakraLink>
+		<Text
+			as={NextLink}
+			href={href}
+			{...props}
+			color={color}
+			_hover={{ textDecoration: 'underline' }}>
+			{children}
+		</Text>
 	)
 }
+
+export default Link
