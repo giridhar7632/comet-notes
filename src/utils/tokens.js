@@ -16,9 +16,10 @@ const createRefreshToken = (id) => {
 }
 
 // sending the access token to the client
-const sendAccessToken = (_req, res, accesstoken) => {
+const sendAccessToken = (_req, res, user, accesstoken) => {
 	res.json({
 		accesstoken,
+		user,
 		message: 'Sign in Successful 🥳',
 		type: 'success',
 	})
@@ -27,7 +28,7 @@ const sendAccessToken = (_req, res, accesstoken) => {
 // sending the refresh token to the client as a cookie
 const sendRefreshToken = (res, refreshtoken) => {
 	res.cookie('refreshtoken', refreshtoken, {
-		// httpOnly: true,
+		httpOnly: true,
 	})
 }
 

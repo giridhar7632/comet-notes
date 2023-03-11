@@ -278,7 +278,7 @@ const emailTemplate = ({ title, subject, body, link, btn, footer }) => `
 																		style="text-align: center"
 																	>
 																		<img
-																			src="https://comet-notes.vercel.app/icons/icon-152x152.png"
+																			src="https://comet-notes.vercel.app/icon-192x192.png"
 																			alt="Comet Notes"
 																			style="width: 80px"
 																		/>

@@ -14,12 +14,25 @@ const { requestLogger } = require('./utils/middleware.js')
 const app = express()
 
 // middleware functions
-app.use((_req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*')
+app.use((req, res, next) => {
+	const allowedOrigins = [
+		'http://127.0.0.1:3000',
+		'http://localhost:3000',
+		'http://localhost:5000',
+		'http://127.0.0.1:5000',
+		'http://localhost:8080',
+		'https://comet-notes.vercel.app',
+	]
+	const origin = req.headers.origin
+	if (allowedOrigins.includes(origin)) {
+		res.setHeader('Access-Control-Allow-Origin', origin)
+	}
+	// res.setHeader('Access-Control-Allow-Origin', req.headers.origin)
 	res.setHeader(
 		'Access-Control-Allow-Methods',
 		'OPTIONS, GET, POST, PUT, PATCH, DELETE'
 	)
+	res.setHeader('Access-Control-Allow-Credentials', true)
 	res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
 	next()
 })
@@ -27,7 +40,12 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cookieParser())
 app.use(requestLogger)
-// app.use(cors())
+// app.use(
+// 	cors({
+// 		origin: 'https://comet-notes.vercel.app',
+// 		credentials: true,
+// 	})
+// )
 
 app.use('/', mainRouter)
 app.use('/auth', authRouter)

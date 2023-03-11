@@ -19,7 +19,7 @@ const {
 	createEmailVerificationUrl,
 } = require('../utils/email')
 
-router.post('/signup', async (req, res) => {
+router.post('/register', async (req, res) => {
 	try {
 		const { name, email, password } = req.body
 
@@ -93,7 +93,7 @@ router.post('/login', async (req, res) => {
 		await user.save()
 
 		sendRefreshToken(res, refreshToken)
-		sendAccessToken(req, res, accessToken)
+		sendAccessToken(req, res, user, accessToken)
 	} catch (error) {
 		logger.error(error)
 
@@ -126,18 +126,20 @@ router.post('/refresh_token', async (req, res) => {
 		try {
 			id = verify(refreshtoken, REFRESH_TOKEN_SECRET).id
 		} catch (error) {
+			console.log(error)
 			return res.status(500).json({
 				message: 'Invalid refresh token! 🤔',
 				type: 'error',
 			})
 		}
 
-		if (!id)
+		if (!id) {
+			console.log('id', id)
 			return res.status(500).json({
 				message: 'Invalid refresh token! 🤔',
 				type: 'error',
 			})
-
+		}
 		const user = await User.findById(id)
 
 		if (!user)
@@ -146,22 +148,25 @@ router.post('/refresh_token', async (req, res) => {
 				type: 'error',
 			})
 
-		if (user.refreshtoken !== refreshtoken)
+		if (user.refreshtoken !== refreshtoken) {
+			console.log(user.refreshtoken, refreshtoken)
 			return res.status(500).json({
 				message: 'Invalid refresh token! 🤔',
 				type: 'error',
 			})
-
-		const accessToken = createAccessToken(user._id)
+		}
+		const accesstoken = createAccessToken(user._id)
 		const refreshToken = createRefreshToken(user._id)
 
 		user.refreshtoken = refreshToken
+		await user.save()
 
 		sendRefreshToken(res, refreshToken)
 		return res.json({
 			message: 'Refreshed successfully! 🤗',
 			type: 'success',
-			accessToken,
+			accesstoken,
+			user,
 		})
 	} catch (error) {
 		logger.error(error)

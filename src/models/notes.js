@@ -14,14 +14,6 @@ const notesSchema = new Schema(
 			type: String,
 			required: true,
 		},
-		date: {
-			type: Date,
-			default: new Date(),
-		},
-		name: {
-			type: String,
-			required: true,
-		},
 	},
 	{
 		timestamps: true,
