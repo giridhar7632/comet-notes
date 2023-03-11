@@ -25,34 +25,36 @@ export const AuthProvider = ({ children }) => {
 	}
 
 	useEffect(() => {
-		const token = localStorage.getItem('token')
-		console.log('token: ', token)
-		if (!(token === null || token === undefined)) {
-			loginWithToken()
+		refreshSession()
+		setIsLoading(false)
+	}, [isAuth])
+
+	async function refreshSession() {
+		setIsLoading(true)
+		try {
+			const res = await fetcher('/auth/refresh_token', {
+				method: 'POST',
+			})
+			setIsAuth(res.accesstoken)
+			setUser(res.user)
+			// addToast(res.message, res.type)
+		} catch (error) {
+			console.log(error)
+			// error?.message
+			// 	? addToast(error.message, 'error')
+			// 	: addToast('Something went wrong! 😕', 'error')
 		}
 		setIsLoading(false)
-	}, [])
-
-	function loginWithToken(token) {
-		localStorage.setItem('token', token)
-		setIsAuth(token)
-		setUser({
-			name: 'hello',
-			msg: 'Logged in because token in localStorage',
-		})
 	}
 
 	async function register(body) {
 		setIsLoading(true)
 		try {
-			const { data: res } = await fetcher('/auth/register', { body })
-			console.log(res)
-			setUser(res.user)
-			setIsAuth(res.token)
-			addToast(res.msg, res.type)
+			const res = await fetcher('/auth/register', { body })
+			addToast(res.message, res.type)
 		} catch (error) {
-			error.response.data.msg
-				? addToast(error.response.data.msg, error.response.data.type)
+			error?.message
+				? addToast(error.message, 'error')
 				: addToast('Something went wrong! 😕', 'error')
 		}
 		setIsLoading(false)
@@ -61,23 +63,28 @@ export const AuthProvider = ({ children }) => {
 	async function login(body) {
 		setIsLoading(true)
 		try {
-			const { data: res } = await fetcher('/auth/login', { body })
-			console.log(res)
+			const res = await fetcher('/auth/login', { body })
+			setIsAuth(res.accesstoken)
 			setUser(res.user)
-			setIsAuth(res.token)
-			addToast(res.msg, res.type)
+			addToast(res.message, res.type)
 		} catch (error) {
-			error.response.data.msg
-				? addToast(error.response.data.msg, error.response.data.type)
+			error?.message
+				? addToast(error.message, 'error')
 				: addToast('Something went wrong! 😕', 'error')
 		}
 		setIsLoading(false)
 	}
 
-	function logout() {
-		setIsAuth('')
-		setUser({})
-		localStorage.removeItem('token')
+	async function logout() {
+		try {
+			await fetcher('/auth/logout', { method: 'POST' })
+			setIsAuth('')
+			setUser({})
+		} catch (error) {
+			error?.message
+				? addToast(error.message, 'error')
+				: addToast('Something went wrong! 😕', 'error')
+		}
 	}
 
 	return (
@@ -88,7 +95,6 @@ export const AuthProvider = ({ children }) => {
 				register,
 				login,
 				logout,
-				loginWithToken,
 				isLoading,
 			}}>
 			{children}

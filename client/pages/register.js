@@ -51,6 +51,7 @@ const Register = () => {
 		e.preventDefault()
 		await register(user)
 		setUser({ name: '', email: '', password: '' })
+		router.replace('/login')
 	}
 
 	return (
@@ -75,6 +76,7 @@ const Register = () => {
 					<Input
 						type='text'
 						name='name'
+						autoComplete='username'
 						value={user.name}
 						onChange={handleChange}
 						placeholder='your sweet name'
@@ -85,6 +87,7 @@ const Register = () => {
 					<Input
 						type='email'
 						name='email'
+						autoComplete='email'
 						value={user.email}
 						onChange={handleChange}
 						placeholder='your@email.com'

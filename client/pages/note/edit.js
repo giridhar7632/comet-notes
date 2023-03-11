@@ -65,7 +65,7 @@ const EditNote = ({ match }) => {
 					body: newNote,
 					headers: { Authorization: isAuth },
 				})
-				addToast(res.data.msg, res.data.type)
+				addToast(res.data.message, res.data.type)
 				router.push('/')
 			}
 		} catch (error) {

@@ -1,6 +1,5 @@
 import Link from '@/components/common/Link'
 import { Pencil, Trash } from '@/components/icons'
-import Layout from '@/components/layout'
 import { fetcher } from '@/utils/fetcher'
 import { useAuth } from '@/utils/useAuth'
 import {
@@ -20,9 +19,7 @@ export default function Home() {
 	const { isAuth } = useAuth()
 
 	const getNotes = async (token) => {
-		const res = await fetcher('api/notes', {
-			headers: { Authorization: token },
-		})
+		const res = await fetcher('/api/notes', { token })
 		setNotes(res.data)
 	}
 
@@ -37,7 +34,7 @@ export default function Home() {
 			if (isAuth) {
 				await fetcher(`api/notes/${id}`, {
 					method: 'DELETE',
-					headers: { Authorization: isAuth },
+					token: isAuth,
 				})
 				getNotes(isAuth)
 			}

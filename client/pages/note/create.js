@@ -47,10 +47,10 @@ const CreateNote = () => {
 
 				const res = await fetcher('/api/notes', {
 					body: newNote,
-					headers: { Authorization: isAuth },
+					token: isAuth,
 				})
 				console.log(res)
-				addToast(res.data.msg, res.data.type)
+				addToast(res.data.message, res.data.type)
 				return router.push('/')
 			}
 		} catch (error) {
