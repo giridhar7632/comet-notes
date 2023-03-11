@@ -19,7 +19,7 @@ const Layout = ({ meta, children, ...props }) => {
 				minHeight={'100vh'}
 				direction={'column'}>
 				<Navbar />
-				<Box as={'main'} h={'100%'} flex='1' px={4} mx={2} py={2} {...props}>
+				<Box as={'main'} h={'100%'} flex='1' px={4} py={2} {...props}>
 					{children}
 				</Box>
 				<Footer />

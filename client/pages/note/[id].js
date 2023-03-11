@@ -83,8 +83,8 @@ const EditNote = () => {
 				shadow={'sm'}
 				as={'form'}
 				p={12}
-				w={'500px'}
-				maxW={'3xl'}
+				w={'100%'}
+				maxW={'500px'}
 				rounded={'xl'}
 				backdropBlur={'12px'}
 				borderWidth={'1px'}

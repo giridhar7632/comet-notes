@@ -49,8 +49,8 @@ const Login = () => {
 				shadow={'sm'}
 				as={'form'}
 				p={12}
-				w={96}
-				maxW={'2xl'}
+				w={'100%'}
+				maxW={96}
 				rounded={'xl'}
 				backdropBlur={'12px'}
 				borderWidth={'1px'}
