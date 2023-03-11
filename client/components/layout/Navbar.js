@@ -8,7 +8,14 @@ const Navbar = () => {
 	const { isAuth, logout } = useAuth()
 
 	return (
-		<Flex as={'nav'} justifyContent='space-between' w='100%' my={2} p={4}>
+		<Flex
+			as={'nav'}
+			gap={4}
+			direction={[isAuth ? 'column' : 'row', 'row']}
+			justifyContent='space-between'
+			w='100%'
+			my={2}
+			p={4}>
 			<Flex gap={4} justifyContent='center' alignItems='center'>
 				<Image src={'/logo.png'} alt='' width={36} height={36} />
 				<Heading textAlign='center' fontWeight='bold' fontSize='2xl'>
@@ -24,7 +31,11 @@ const Navbar = () => {
 					</Link>
 				)}
 				{isAuth && (
-					<Button variant='text' size='md' onClick={logout}>
+					<Button
+						variant='outline'
+						colorScheme={'gray'}
+						size='md'
+						onClick={logout}>
 						Logout
 					</Button>
 				)}
