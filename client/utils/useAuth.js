@@ -12,7 +12,7 @@ export const AuthContext = createContext({})
 export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState({}) // state for tracking user
 	const [isAuth, setIsAuth] = useState('') // state for tracking jwt token
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 	const toast = useToast()
 	const toastIdRef = useRef()
 	const addToast = (text, type) => {
@@ -26,8 +26,7 @@ export const AuthProvider = ({ children }) => {
 
 	useEffect(() => {
 		refreshSession()
-		setIsLoading(false)
-	}, [isAuth])
+	}, [])
 
 	async function refreshSession() {
 		setIsLoading(true)
@@ -35,6 +34,7 @@ export const AuthProvider = ({ children }) => {
 			const res = await fetcher('/auth/refresh_token', {
 				method: 'POST',
 			})
+			console.log(res)
 			setIsAuth(res.accesstoken)
 			setUser(res.user)
 			// addToast(res.message, res.type)

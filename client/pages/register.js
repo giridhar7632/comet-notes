@@ -68,7 +68,7 @@ const Register = () => {
 				borderColor={borderColor}
 				bg={bgColor}
 				onSubmit={registerUser}>
-				<Heading as='h2' size='lg' mb={6}>
+				<Heading as='h1' size='lg' mb={6}>
 					Register
 				</Heading>
 				<FormControl id='name' isRequired mb={2}>
@@ -76,8 +76,9 @@ const Register = () => {
 					<Input
 						type='text'
 						name='name'
-						autoComplete='username'
+						autoComplete='off'
 						value={user.name}
+						focusBorderColor='purple.400'
 						onChange={handleChange}
 						placeholder='your sweet name'
 					/>
@@ -89,6 +90,7 @@ const Register = () => {
 						name='email'
 						autoComplete='email'
 						value={user.email}
+						focusBorderColor='purple.400'
 						onChange={handleChange}
 						placeholder='your@email.com'
 					/>
@@ -101,6 +103,7 @@ const Register = () => {
 							type={show ? 'text' : 'password'}
 							name='password'
 							value={user.password}
+							focusBorderColor='purple.400'
 							onChange={handleChange}
 							placeholder='super secret - min 8 characters'
 						/>
@@ -114,7 +117,8 @@ const Register = () => {
 				<Button
 					mt={6}
 					type='submit'
-					disabled={isLoading}
+					isLoading={isLoading}
+					loadingText='Registering...'
 					colorScheme='purple'
 					variant='solid'>
 					Register

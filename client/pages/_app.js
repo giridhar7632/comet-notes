@@ -6,7 +6,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }) {
-	const protectedRoutes = ['/', '/note/create', '/note/edit']
+	const protectedRoutes = ['/', '/create', '/note/[id]']
 	const router = useRouter()
 	const name = titleCase(router.pathname.slice(1))
 	return (

@@ -8,6 +8,8 @@ import {
 	Heading,
 	Box,
 	useToast,
+	Flex,
+	useColorModeValue,
 } from '@chakra-ui/react'
 import { useAuth } from '@/utils/useAuth'
 import { useRouter } from 'next/router'
@@ -17,10 +19,11 @@ const CreateNote = () => {
 	const [note, setNote] = useState({
 		title: '',
 		content: '',
-		date: '',
 	})
 	const { isAuth } = useAuth()
 	const router = useRouter()
+	const borderColor = useColorModeValue('gray.200', 'gray.700')
+	const bgColor = useColorModeValue('whiteAlpha.700', 'gray.800')
 	const toast = useToast()
 	const toastIdRef = useRef()
 	const addToast = (text, type) => {
@@ -42,8 +45,8 @@ const CreateNote = () => {
 		e.preventDefault()
 		try {
 			if (isAuth) {
-				const { title, content, date } = note
-				const newNote = { title, content, date }
+				const { title, content } = note
+				const newNote = { title, content }
 
 				const res = await fetcher('/notes', {
 					body: newNote,
@@ -59,45 +62,48 @@ const CreateNote = () => {
 	}
 
 	return (
-		<div>
-			<Box w='30vw'>
-				<Heading my={4}> Create Note</Heading>
-				<form onSubmit={createNote}>
-					<FormControl>
-						<FormLabel>Title</FormLabel>
-						<Input
-							name='title'
-							value={note.title}
-							onChange={handleChange}
-							placeholder='Untitled'
-						/>
-					</FormControl>
+		<Flex flexDirection='column' alignItems={'center'} justifyContent='center'>
+			<Box
+				shadow={'sm'}
+				as={'form'}
+				p={12}
+				w={'500px'}
+				maxW={'3xl'}
+				rounded={'xl'}
+				backdropBlur={'12px'}
+				borderWidth={'1px'}
+				borderColor={borderColor}
+				bg={bgColor}
+				onSubmit={createNote}>
+				<Heading as={'h1'} size='lg' mb={6}>
+					Create Note
+				</Heading>
+				<FormControl>
+					<FormLabel>Title</FormLabel>
+					<Input
+						name='title'
+						value={note.title}
+						focusBorderColor='purple.400'
+						onChange={handleChange}
+						placeholder='Untitled'
+					/>
+				</FormControl>
 
-					<FormControl mt={4} isRequired>
-						<FormLabel>Content</FormLabel>
-						<Textarea
-							name='content'
-							value={note.content}
-							onChange={handleChange}
-							placeholder='Content of the note'
-						/>
-					</FormControl>
-
-					<FormControl mt={4}>
-						<FormLabel>Date</FormLabel>
-						<Input
-							name='date'
-							value={note.date}
-							onChange={handleChange}
-							type='date'
-						/>
-					</FormControl>
-					<Button type='submit' colorScheme='purple' mt={3}>
-						Add Note
-					</Button>
-				</form>
+				<FormControl mt={4} isRequired>
+					<FormLabel>Content</FormLabel>
+					<Textarea
+						name='content'
+						value={note.content}
+						focusBorderColor='purple.400'
+						onChange={handleChange}
+						placeholder='Content of the note'
+					/>
+				</FormControl>
+				<Button type='submit' colorScheme='purple' mt={3}>
+					Add Note
+				</Button>
 			</Box>
-		</div>
+		</Flex>
 	)
 }
 

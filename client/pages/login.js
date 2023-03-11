@@ -57,7 +57,7 @@ const Login = () => {
 				borderColor={borderColor}
 				bg={bgColor}
 				onSubmit={loginUser}>
-				<Heading as='h2' size='lg' mb={6}>
+				<Heading as='h1' size='lg' mb={6}>
 					Login
 				</Heading>
 				<FormControl id='email' isRequired>
@@ -66,6 +66,7 @@ const Login = () => {
 						type='email'
 						name='email'
 						value={user.email}
+						focusBorderColor='purple.400'
 						onChange={handleChange}
 						placeholder='your@email.com'
 					/>
@@ -78,6 +79,7 @@ const Login = () => {
 							type={show ? 'text' : 'password'}
 							name='password'
 							value={user.password}
+							focusBorderColor='purple.400'
 							onChange={handleChange}
 							placeholder='your super secret'
 						/>
@@ -91,7 +93,8 @@ const Login = () => {
 				<Button
 					mt={6}
 					type='submit'
-					disabled={isLoading}
+					isLoading={isLoading}
+					loadingText='Logging in...'
 					colorScheme='purple'
 					variant='solid'>
 					Login

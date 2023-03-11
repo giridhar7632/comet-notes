@@ -11,6 +11,7 @@ const Protected = ({ protectedRoutes, children }) => {
 	const pathIsProtected = protectedRoutes.indexOf(router.pathname) !== -1
 
 	useEffect(() => {
+		console.log({ isLoading, isAuth, pathIsProtected })
 		if (!isLoading && !isAuth && pathIsProtected) {
 			// Redirect route, you can point this to /login
 			router.push('/login')
