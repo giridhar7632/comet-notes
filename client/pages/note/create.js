@@ -45,7 +45,7 @@ const CreateNote = () => {
 				const { title, content, date } = note
 				const newNote = { title, content, date }
 
-				const res = await fetcher('/api/notes', {
+				const res = await fetcher('/notes', {
 					body: newNote,
 					token: isAuth,
 				})

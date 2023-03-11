@@ -19,7 +19,7 @@ export default function Home() {
 	const { isAuth } = useAuth()
 
 	const getNotes = async (token) => {
-		const res = await fetcher('/api/notes', { token })
+		const res = await fetcher('/notes', { token })
 		setNotes(res.data)
 	}
 
@@ -32,7 +32,7 @@ export default function Home() {
 	const deleteNote = async (id) => {
 		try {
 			if (isAuth) {
-				await fetcher(`api/notes/${id}`, {
+				await fetcher(`/notes/${id}`, {
 					method: 'DELETE',
 					token: isAuth,
 				})

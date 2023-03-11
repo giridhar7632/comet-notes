@@ -38,7 +38,7 @@ const EditNote = ({ match }) => {
 	useEffect(() => {
 		const getNote = async () => {
 			if (match.params.id) {
-				const res = await fetcher(`/api/notes/${match.params.id}`, {
+				const res = await fetcher(`/notes/${match.params.id}`, {
 					headers: { Authorization: isAuth },
 				})
 				console.log(res.data.date)
