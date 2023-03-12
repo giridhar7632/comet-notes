@@ -1,9 +1,10 @@
 import Layout from '@/components/layout'
 import Protected from '@/components/Protected'
 import { titleCase } from '@/utils/titleCase'
-import { AuthProvider } from '@/utils/useAuth'
+import { AuthProvider } from '@/context/useAuth'
 import { ChakraProvider } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import { NoteProvider } from '@/context/useNote'
 
 function MyApp({ Component, pageProps }) {
 	const protectedRoutes = ['/', '/create', '/note/[id]']
@@ -12,11 +13,13 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<ChakraProvider>
 			<AuthProvider>
-				<Layout meta={name && { name }}>
-					<Protected protectedRoutes={protectedRoutes}>
-						<Component {...pageProps} />
-					</Protected>
-				</Layout>
+				<NoteProvider>
+					<Layout meta={name && { name }}>
+						<Protected protectedRoutes={protectedRoutes}>
+							<Component {...pageProps} />
+						</Protected>
+					</Layout>
+				</NoteProvider>
 			</AuthProvider>
 		</ChakraProvider>
 	)

@@ -2,7 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Flex, Button, Heading } from '@chakra-ui/react'
 import { ColorModeSwitcher } from '@/utils/ColorModeSwitcher'
-import { useAuth } from '@/utils/useAuth'
+import { useAuth } from '@/context/useAuth'
+import Create from '../Note/Create'
 
 const Navbar = () => {
 	const { isAuth, logout } = useAuth()
@@ -23,13 +24,12 @@ const Navbar = () => {
 				</Heading>
 			</Flex>
 			<Flex gap={3} justifyContent='space-between'>
-				{isAuth && (
-					<Link href='/create'>
+				{/* <Link href='/create'>
 						<Button colorScheme={'purple'} size='md'>
 							Add Note
 						</Button>
-					</Link>
-				)}
+					</Link> */}
+				{isAuth && <Create />}
 				{isAuth && (
 					<Button
 						variant='outline'

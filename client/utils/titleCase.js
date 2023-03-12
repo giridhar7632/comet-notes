@@ -1,5 +1,4 @@
 export function titleCase(str) {
-	console.log(str)
 	return str
 		.split('/')
 		.map(function (word) {

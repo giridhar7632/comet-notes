@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { useAuth } from '@/utils/useAuth'
+import { useAuth } from '@/context/useAuth'
 import Loader from './common/Loader'
 
 const Protected = ({ protectedRoutes, children }) => {

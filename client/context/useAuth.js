@@ -1,6 +1,6 @@
 import { useToast } from '@chakra-ui/react'
 import { createContext, useContext, useEffect, useRef, useState } from 'react'
-import { fetcher } from './fetcher'
+import { fetcher } from '../utils/fetcher'
 
 // making custom hook to use context in each component
 export const useAuth = () => useContext(AuthContext)
