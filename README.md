@@ -1,2 +1,2 @@
 # Comet Notes
-a app to take quick and fast notes
+an app to take quick and fast notes
