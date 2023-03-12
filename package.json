@@ -1,6 +1,6 @@
 {
 	"name": "comet-notes",
-	"version": "1.0.0",
+	"version": "1.2.0",
 	"description": "an app to take quick and fast notes ",
 	"main": "index.js",
 	"scripts": {
@@ -8,7 +8,7 @@
 		"dev": "nodemon index.js"
 	},
 	"author": "Giridhar Talla",
-	"license": "ISC",
+	"license": "MIT",
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
 		"cookie-parser": "^1.4.6",
