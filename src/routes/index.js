@@ -16,7 +16,7 @@ const { isAuth } = require('../utils/isAuth')
 const logger = require('../utils/logger')
 const { hash } = require('bcryptjs')
 
-router.get('/', function (_req, res) {
+router.get('/status', function (_req, res) {
 	res.send('Live!! 👌')
 })
 
