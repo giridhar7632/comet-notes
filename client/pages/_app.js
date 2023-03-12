@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { NoteProvider } from '@/context/useNote'
 
 function MyApp({ Component, pageProps }) {
-	const protectedRoutes = ['/', '/create', '/note/[id]']
+	const protectedRoutes = ['/']
 	const router = useRouter()
 	const name = titleCase(router.pathname.slice(1))
 	return (

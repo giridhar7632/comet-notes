@@ -21,7 +21,7 @@ const Login = () => {
 	const [show, setShow] = useState(false)
 	const { isAuth, login, isLoading } = useAuth()
 	const router = useRouter()
-	const borderColor = useColorModeValue('gray.200', 'gray.600')
+	const borderColor = useColorModeValue('gray.200', 'gray.700')
 	const bgColor = useColorModeValue('whiteAlpha.700', 'gray.800')
 
 	useEffect(() => {

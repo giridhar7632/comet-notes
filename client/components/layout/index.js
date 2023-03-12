@@ -7,6 +7,7 @@ const Layout = ({ meta, children, ...props }) => {
 	return (
 		<Box
 			width={'100vw'}
+			overflowX={'hidden'}
 			height={'100%'}
 			bgImage="url('/bg.png')"
 			bgPosition='center'

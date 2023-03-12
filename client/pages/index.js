@@ -1,15 +1,12 @@
-import Link from '@/components/common/Link'
 import Loader from '@/components/common/Loader'
-import { Pencil, Trash } from '@/components/icons'
-import { fetcher } from '@/utils/fetcher'
-import { useAuth } from '@/context/useAuth'
+import { Trash } from '@/components/icons'
 import {
+	Card,
 	Flex,
 	Grid,
 	Heading,
 	HStack,
 	IconButton,
-	Stack,
 	Text,
 	useColorModeValue,
 } from '@chakra-ui/react'
@@ -20,7 +17,8 @@ import View from '@/components/Note'
 
 export default function Home() {
 	const { notes, deleteNote, loading } = useNote()
-	const bgColor = useColorModeValue('white', 'gray.900')
+	const bgColor = useColorModeValue('white', 'gray.800')
+	const borderColor = useColorModeValue('gray.200', 'gray.700')
 
 	return (
 		<Flex w='100%' flexDirection='column' mb={8}>
@@ -41,20 +39,23 @@ export default function Home() {
 					templateColumns={[
 						'repeat(1, 1fr)',
 						'repeat(2, 1fr)',
+						'repeat(2, 1fr)',
 						'repeat(3, 1fr)',
 					]}
-					gap={6}
-					m='0 auto'
-					w={['100%', '90%', '85%']}>
+					gap={[4, 6]}
+					mx={'auto'}
+					maxWidth={['100%']}>
 					{notes.map((note) => (
-						<Flex
+						<Card
+							display={'flex'}
 							direction={'column'}
-							w='100%'
 							p={5}
 							key={note._id}
 							cursor={'pointer'}
 							shadow='sm'
+							w={'100%'}
 							bg={bgColor}
+							borderColor={borderColor}
 							borderWidth='1px'
 							borderRadius='md'
 							_hover={{ shadow: 'md' }}>
@@ -86,7 +87,7 @@ export default function Home() {
 									Last updated {format(note.updatedAt)}
 								</Text>
 							</HStack>
-						</Flex>
+						</Card>
 					))}
 				</Grid>
 			)}

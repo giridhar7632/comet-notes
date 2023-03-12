@@ -23,16 +23,6 @@ const Register = () => {
 	const [show, setShow] = useState(false)
 	const borderColor = useColorModeValue('gray.200', 'gray.700')
 	const bgColor = useColorModeValue('whiteAlpha.700', 'gray.800')
-	// const toast = useToast()
-	// const toastIdRef = useRef()
-	// const addToast = (text, type) => {
-	// 	toastIdRef.current = toast({
-	// 		title: `${text}`,
-	// 		status: `${type}`,
-	// 		isClosable: true,
-	// 		duration: 3000,
-	// 	})
-	// }
 
 	useEffect(() => {
 		if (isAuth) {

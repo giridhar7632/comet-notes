@@ -56,7 +56,7 @@ const Edit = ({ title = '', content = '', _id }) => {
 			<Modal
 				onClose={onClose}
 				isOpen={isOpen}
-				size={'xl'}
+				size={['full', 'xl']}
 				initialFocusRef={initialRef}
 				scrollBehavior={'inside'}>
 				<ModalOverlay />

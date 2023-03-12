@@ -1,10 +1,8 @@
 import { useNote } from '@/context/useNote'
 import {
 	Box,
-	Button,
 	Flex,
 	Heading,
-	HStack,
 	IconButton,
 	Modal,
 	ModalBody,
@@ -23,10 +21,6 @@ import Edit from './Edit'
 const View = ({ note, children, ...props }) => {
 	const { deleteNote } = useNote()
 	const { isOpen, onOpen, onClose } = useDisclosure()
-	function OnInput(e) {
-		e.target.style.height = 0
-		e.target.style.height = e.target.scrollHeight + 'px'
-	}
 
 	return (
 		<>
@@ -37,7 +31,7 @@ const View = ({ note, children, ...props }) => {
 			<Modal
 				onClose={onClose}
 				isOpen={isOpen}
-				size={'xl'}
+				size={['full', 'xl']}
 				scrollBehavior={'inside'}>
 				<ModalOverlay />
 				<ModalContent>

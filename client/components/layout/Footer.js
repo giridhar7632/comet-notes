@@ -5,12 +5,12 @@ const Footer = () => (
 	<Flex
 		as={'footer'}
 		justifyContent='space-between'
+		alignItems={'center'}
 		w='100%'
-		flexDirection='row'
+		flexDirection={['column-reverse', 'row']}
 		fontSize={'sm'}
 		my={2}
-		px={2}
-		py={4}>
+		p={4}>
 		<Text color={'gray.500'}>
 			&copy; {new Date().getFullYear()}
 			{' Comet Notes | All Rights Reserved'}
